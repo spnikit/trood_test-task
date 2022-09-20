@@ -1,6 +1,10 @@
-import React, {useMemo} from 'react';
+import React, {useCallback, useMemo} from 'react';
 import BarLine from './BarLine';
 import InfoCard from './InfoCard';
+import {getFractionRoundedTo2Digits} from "../Utils";
+import BarLinesList from "./BarLinesList";
+import CardList from "./CardList";
+
 
 function ProgressBar({items}) {
 
@@ -11,33 +15,34 @@ function ProgressBar({items}) {
 
     // get fractions and add to arr
     const fractions = useMemo(() => items.map((item) => ({
-        fraction: Math.floor((item.value / total) * 100 * 100) / 100,
+        fraction: getFractionRoundedTo2Digits(item.value, total),
         ...item,
     })), [items]);
 
+    // compute bars
     const barsArray = useMemo(() => fractions.map((item) =>
         Array.from(Array(Math.ceil(item.fraction)))
-            .flatMap((_) => (
-                <BarLine color={item.color}/>
+            .flatMap((_, idx) => (
+                <BarLine key={idx} color={item.color}/>
             ))
     ), [items]);
 
+
+    const render = useCallback(({name, color, value, fraction}) => (
+        <InfoCard
+            key={name}
+            name={name}
+            color={color}
+            value={value}
+            fraction={fraction}
+        />), [items]);
+
     return (
         <>
-            <div className="flex gap-1 mb-3">{barsArray}</div>
-            <div className="flex gap-4">
-                {fractions.map(({name, color, value, fraction}) => (
-                    <InfoCard
-                        key={name}
-                        name={name}
-                        color={color}
-                        value={value}
-                        fraction={fraction}
-                    />
-                ))}
-            </div>
+            <BarLinesList>{barsArray}</BarLinesList>
+            <CardList render={render} items={fractions}/>
         </>
     );
 }
 
-export default ProgressBar;
+export default React.memo(ProgressBar);

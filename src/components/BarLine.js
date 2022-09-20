@@ -1,6 +1,6 @@
 import React from 'react';
 
-function BarLine({ width = 10, height = 30, color }) {
+function BarLine({width = 10, height = 30, color}) {
 
     const style = {
         backgroundColor: color,
@@ -16,4 +16,4 @@ function BarLine({ width = 10, height = 30, color }) {
     );
 }
 
-export default BarLine;
+export default React.memo(BarLine);
