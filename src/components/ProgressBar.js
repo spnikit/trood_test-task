@@ -8,6 +8,7 @@ import CardList from "./CardList";
 
 function ProgressBar({items=[]}) {
 
+
     // get total value from items
     const total = useMemo(() => items
         .map((item) => item.value)
