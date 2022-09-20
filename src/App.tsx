@@ -1,8 +1,9 @@
 import './App.css';
 import ProgressBar from "./components/ProgressBar";
+import {Item} from "./models";
 
 
-const items = [
+const items: Item[] = [
     {name: 'Sold', color: '#BD1FBE', value: 102},
     {name: 'Got free', color: '#FC64FF', value: 25},
     {name: 'Burned', color: '#7ce851', value: 202}

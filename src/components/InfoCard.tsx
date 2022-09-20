@@ -1,6 +1,14 @@
 import React from 'react';
 
-function InfoCard({color, name, value, fraction}) {
+
+interface InfocardProps {
+    color: string;
+    name: string;
+    value: number;
+    fraction: number;
+}
+
+function InfoCard({color, name, value, fraction}: InfocardProps) {
 
     const style = {
         backgroundColor: color

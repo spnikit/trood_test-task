@@ -4,9 +4,16 @@ import InfoCard from './InfoCard';
 import {getFractionRoundedTo2Digits} from "../Utils";
 import BarLinesList from "./BarLinesList";
 import CardList from "./CardList";
+import {Item, ItemAndFraction} from "../models";
 
 
-function ProgressBar({items=[]}) {
+interface ProgressBarProps {
+    items: Item[]
+}
+
+
+
+function ProgressBar({items = []}: ProgressBarProps) {
 
 
     // get total value from items
@@ -29,7 +36,7 @@ function ProgressBar({items=[]}) {
     ), [items]);
 
 
-    const render = useCallback(({name, color, value, fraction}) => (
+    const render = useCallback(({name, color, value, fraction}: ItemAndFraction) => (
         <InfoCard
             key={name}
             name={name}

@@ -1,6 +1,10 @@
 import React from 'react';
 
-function BarLinesList(props) {
+interface BarLinesListProps {
+    children: React.ReactNode;
+}
+
+function BarLinesList(props: BarLinesListProps) {
     return (
         <div className="flex gap-1 mb-3">
             {props.children}

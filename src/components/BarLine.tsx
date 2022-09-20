@@ -1,6 +1,12 @@
 import React from 'react';
 
-function BarLine({width = 10, height = 30, color}) {
+interface BarLineProps{
+    width?: number;
+    height?: number;
+    color: string
+}
+
+function BarLine({width = 10, height = 30, color}: BarLineProps) {
 
     const style = {
         backgroundColor: color,
