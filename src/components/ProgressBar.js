@@ -6,7 +6,7 @@ import BarLinesList from "./BarLinesList";
 import CardList from "./CardList";
 
 
-function ProgressBar({items}) {
+function ProgressBar({items=[]}) {
 
     // get total value from items
     const total = useMemo(() => items
